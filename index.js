@@ -40,14 +40,13 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/", (req, res) => {
-  res.send("Hi from the express server");
-});
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/hotels", hotelRoutes);
 app.use("/api/v1/rooms", roomRoutes);
-
+app.use("/", (req, res) => {
+  res.send("Hi from the express server");
+});
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something Went wrong!";
